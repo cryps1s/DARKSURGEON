@@ -381,11 +381,15 @@ Once the DARKSURGEON virtual machine is running, you can login using one of the 
 **Note**: These are default accounts with default credentials. You may want to consider changing the credentials in your packer build.
 
 **Administrator Account:**
+
 Username: Darksurgeon
+
 Password: darksurgeon
 
 **Local User Account:**
+
 Username: Unprivileged
+
 Password: unprivileged
 
 If you'd rather not use vagrant, you can either import the VM image manually, or look at one of the many other post-processor options provided by packer.
