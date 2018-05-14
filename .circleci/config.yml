@@ -1,0 +1,31 @@
+version: 2
+jobs:
+    build:
+      docker:
+        - image: circleci/python:2.7-stretch
+      steps:
+        - checkout
+        - run:
+            name: Install Curl and Apt-Transport-Https
+            command: sudo apt-get install -y curl apt-transport-https 
+        - run:
+            name: Add Microsoft GPG Keys
+            command: curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+        - run:
+            name: Add Microsoft APT Repository
+            command: sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-debian-stretch-prod stretch main" > /etc/apt/sources.list.d/microsoft.list'
+        - run:
+            name: Update list of APT packages
+            command: sudo apt-get update
+        - run:
+            name: Install powershell
+            command: sudo apt-get install -y powershell
+        - run:
+            name: Install LXML
+            command: sudo pip install lxml
+        - run:
+            name: Validate Packer Files exist. 
+            command: python ci/validate_packer_files.py
+        - run: 
+            name: Validates JSON Files.
+            command: python ci/validate_json_files.py
