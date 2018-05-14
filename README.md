@@ -14,6 +14,7 @@ DARKSURGEON has three stated goals:
 If you haven't worked with packer before, this project has a simple premise:
 
 Provide all the tools you need to have a productive, secure, and private Windows virtual machine so you can spend less time tweaking your environment and more time fighting bad guys.
+
 **Please note this is an alpha project** and it will be subject to continual development, updates, and package breakage.
 
 ### Development Principles
@@ -336,13 +337,13 @@ DARKSURGEON is built using the HashiCorp application packer. The total build tim
 
 1. Packer creates a new virtual machine using the DARKSURGEON JSON file and your hypervisor of choice (e.g. Hyper-V, Virtualbox, VMWare).
 2. The answers.iso file is mounted inside the DARKSURGEON VM along with the Windows ISO. The answers.iso file contains the unattend.xml needed for a touchless installation of windows, as well as a powershell script to configure Windows Remote Management (winrm).
-3. Packer connects to the DARKSURGEON VM using WinRM and copies over all files in the helper-scripts and configuration-files directory to the host. 
+3. Packer connects to the DARKSURGEON VM using WinRM and copies over all files in the helper-scripts and configuration-files directory to the host.
 4. Packer performs serial installations of each of the configured powershell scripts, performing occasional reboots as needed. 
 5. When complete, packer performs a sysprep, shuts down the virtual machine, and creates a vagrant box file. Additional outputs may be specified in the post-processors section of the JSON file.
 
 ### Setup
 
-**Note:** I highly recommend using Hyper-V running on a Windows 10 Enterprise host. The high security mode controls and configuration of DARKSURGEON assume that Virtualization-Based Security (VBS) features are available. You may need to tweak the configuration depending on your environment and hardware constraints.
+**Note: Hyper-V is currently the only supported hypervisor in this alpha release. VirtualBox and VMWare support are forthcoming.**
 
 1. Install packer, vagrant, and your preferred hypervisor on your host.
 2. Download the repository contents to your host.
@@ -361,6 +362,8 @@ Have a custom CA you need to add? Need to add a license file for IDA? No problem
 Want to install a custom package, or need some specific OS tweaks? No worries. Simply make a new powershell script (or modify an existing one) in the **configuration-scripts** directory and add it as a build step in the packer JSON file.
 
 ## Using DARKSURGEON
+
+**Note: Hyper-V is currently the only supported hypervisor in this alpha release. VirtualBox and VMWare support are forthcoming.**
 
 Once DARKSURGEON has successfully built, you'll receive an output  vagrant box file. The box file contains the virtual machine image and vagrant metadata, allowing you to quickly spin up a virtual machine as needed.
 
