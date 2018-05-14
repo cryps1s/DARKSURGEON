@@ -6,7 +6,7 @@ packer_test_failed_files = []
 def test_packer_files():
     # check for critical files
     critical_files_list = [
-        "darksurgeon_packer.json",
+        "DARKSURGEON.json",
         "Vagrantfile",
         "./configuration/configuration-files/start_layout.xml",
         "./configuration/iso-scripts/answer.iso",

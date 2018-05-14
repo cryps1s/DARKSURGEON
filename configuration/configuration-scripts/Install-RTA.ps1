@@ -1,0 +1,32 @@
+﻿<#  
+	.SYNOPSIS  
+	Installs EndGame Red Team Automation (RTA) from the GitHub repository.
+
+	.DESCRIPTION  
+	Author: Dane Stuckey (@cryps1s)
+	License: MIT
+
+	Installs EndGame Red Team Automation (RTA) from the GitHub repository.
+
+	.NOTES 
+	Thanks to EndGame for this awesome resource.
+
+#>
+
+Set-StrictMode -Version Latest
+
+$GitBinary = "$Env:SystemDrive\Program Files\Git\cmd\git.exe"
+$ToolsFolder = "$Env:SystemDrive\Users\darksurgeon\tools"
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+
+Try 
+ { 
+	# Clone the git repo
+	& $GitBinary clone https://github.com/endgameinc/RTA.git $ToolsFolder\git\RTA
+ }
+Catch 
+ {
+	Write-Host "Failed to clone the Endgame RTA repository from GitHub. Exiting."
+	Write-Host $_.Exception | format-list -force
+	Exit 1 
+ }
