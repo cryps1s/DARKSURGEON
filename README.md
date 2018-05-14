@@ -1,5 +1,5 @@
 # DARKSURGEON
-CircleCI Status: [![CircleCI](https://circleci.com/gh/cryps1s/DARKSURGEON/tree/master.svg?style=svg&circle-token=541c5db48bd14d49debe88e3d57120f631c42343)](https://circleci.com/gh/cryps1s/DARKSURGEON/tree/master)
+CircleCI Status: [![CircleCI](https://circleci.com/gh/cryps1s/DARKSURGEON/tree/master.svg?style=svg&circle-token=ca6d1b0e40ebf6408c581810c0c328b9b807e516)](https://circleci.com/gh/cryps1s/DARKSURGEON/tree/master)
 
 ## About DARKSURGEON
 
