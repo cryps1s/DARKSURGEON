@@ -19,5 +19,20 @@ config.vm.define "DARKSURGEON" do |cfg|
     hv.ip_address_timeout = 240
     hv.memory = 4096
     end
+
+  cfg.vm.provider "vmware_fusion" do |v, override|
+    v.memory = 4096
+    v.cpus = 4
+    v.gui = true
+    end
+
+  cfg.vm.provider "virtualbox" do |vb, override|
+    vb.gui = true
+    vb.customize ["modifyvm", :id, "--memory", 4096]
+    vb.customize ["modifyvm", :id, "--cpus", 4]
+    vb.customize ["modifyvm", :id, "--vram", "32"]
+    vb.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
+    vb.customize ["setextradata", "global", "GUI/SuppressMessages", "all" ]
+    end  
   end
 end

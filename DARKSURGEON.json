@@ -10,9 +10,9 @@
       "enable_secure_boot": true,
       "floppy_files": [],
       "generation": 2,
-      "iso_url": "windows-10-1803-x64-enterprise.iso",
-      "iso_checksum": "28681742FE850AA4BFC7075811C5244B61D462CF",
-      "iso_checksum_type": "sha1",
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
       "ram_size": 4096,
       "secondary_iso_images": [ "./configuration/iso-scripts/answer.iso" ],
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
@@ -28,9 +28,9 @@
       "boot_command": [ "aaaaa<wait>a<wait>a<wait>" ],
       "boot_wait": "0s",
       "communicator": "winrm",
-      "iso_url": "windows-10-1803-x64-enterprise.iso",
-      "iso_checksum": "28681742FE850AA4BFC7075811C5244B61D462CF",
-      "iso_checksum_type": "sha1",
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
       "headless": true,      
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
       "guest_os_type": "Windows2012_64",
@@ -54,6 +54,33 @@
           "4"
         ]
       ]
+    },
+    {
+      "type": "vmware-iso",
+      "communicator": "winrm",
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "headless": true,
+      "boot_wait": "0s",
+      "winrm_username": "darksurgeon",
+      "winrm_password": "darksurgeon",
+      "winrm_timeout": "60m",
+      "shutdown_timeout": "2h",
+      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "guest_os_type": "windows8srv-64",
+      "disk_size": 61440,
+      "vnc_port_min": 5900,
+      "vnc_port_max": 5980,
+      "version": 11,
+      "floppy_dirs": [ "./configuration/iso-scripts/" ],
+      "vmx_data": {
+        "RemoteDisplay.vnc.enabled": "false",
+        "RemoteDisplay.vnc.port": "5900",
+        "memsize": "4096",
+        "numvcpus": "4",
+        "scsi0.virtualDev": "lsisas1068"
+      }
   }],
   "provisioners": [
     {
@@ -257,5 +284,10 @@
       "output": "DARKSURGEON_w10_1803_x64_{{.Provider}}.box",
       "vagrantfile_template": "vagrantfile_DARKSURGEON_w10_1803_x64.template"
     }
-  ]
+  ],
+  "variables": {
+    "iso_url": "windows-10-1803-x64-enterprise.iso",
+    "iso_checksum_type": "sha1",
+    "iso_checksum": "28681742FE850AA4BFC7075811C5244B61D462CF"
+  }
 }
