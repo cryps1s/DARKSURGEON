@@ -100,6 +100,7 @@
       "elevated_user": "darksurgeon",
       "elevated_password": "darksurgeon",
       "scripts": [
+	"./configuration/configuration-scripts/Set-DataExecutionPrevention.ps1",
         "./configuration/configuration-scripts/Set-PowerSettings.ps1",
         "./configuration/configuration-scripts/Set-LowSecurityWindowsDefenderAntiVirusSettings.ps1",
         "./configuration/configuration-scripts/Set-LowSecurityWindowsDefenderSmartScreenSettings.ps1",
