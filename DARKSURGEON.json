@@ -103,6 +103,7 @@
         "./configuration/configuration-scripts/Set-PowerSettings.ps1",
         "./configuration/configuration-scripts/Set-LowSecurityWindowsDefenderAntiVirusSettings.ps1",
         "./configuration/configuration-scripts/Set-LowSecurityWindowsDefenderSmartScreenSettings.ps1",
+        "./configuration/configuration-scripts/Set-LowSecurityWindowsDefenderExploitGuardSettings.ps1",
         "./configuration/configuration-scripts/Set-WindowsTelemetrySettings.ps1",
         "./configuration/configuration-scripts/Remove-PreInstalledApps.ps1",
         "./configuration/configuration-scripts/Install-Chocolatey.ps1",

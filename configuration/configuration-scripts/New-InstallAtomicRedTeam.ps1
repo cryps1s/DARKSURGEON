@@ -15,7 +15,7 @@
 Set-StrictMode -Version Latest
 
 $GitBinary = "$Env:SystemDrive\Program Files\Git\cmd\git.exe"
-$ToolsFolder = "$Env:SystemDrive\Users\surgeon\tools"
+$ToolsFolder = "$Env:SystemDrive\Users\darksurgeon\tools"
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
 Try 
