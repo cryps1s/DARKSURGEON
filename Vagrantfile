@@ -1,7 +1,7 @@
 Vagrant.configure("2") do |config|
 
 config.vm.define "DARKSURGEON" do |cfg|
-  cfg.vm.box = "./DARKSURGEON_w10_1803_x64_hyperv.box"
+  cfg.vm.box = "./DARKSURGEON_w10_1809_x64_hyperv.box"
   cfg.vm.hostname = "DARKSURGEON"
   cfg.vm.guest = :windows
   cfg.vm.communicator = "winrm"

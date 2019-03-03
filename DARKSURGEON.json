@@ -5,7 +5,7 @@
       "boot_command": [ "aaaaa<wait>a<wait>a<wait>" ],
       "boot_wait": "0s",
       "communicator": "winrm",
-      "cpu": 4,
+      "cpu": 2,
       "disk_size": 122880,
       "enable_secure_boot": true,
       "floppy_files": [],
@@ -13,11 +13,11 @@
       "iso_url": "{{user `iso_url`}}",
       "iso_checksum": "{{user `iso_checksum`}}",
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
-      "ram_size": 4096,
+      "ram_size": 2048,
       "secondary_iso_images": [ "./configuration/iso-scripts/answer.iso" ],
       "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
       "switch_name": "Default Switch",
-      "vm_name": "DARKSURGEON_w10_1803_x64",
+      "vm_name": "DARKSURGEON_w10_1809_x64",
       "winrm_timeout": "60m",
       "winrm_username": "darksurgeon",
       "winrm_password": "darksurgeon",
@@ -45,13 +45,13 @@
           "modifyvm",
           "{{.Name}}",
           "--memory",
-          "4096"
+          "2048"
         ],
         [
           "modifyvm",
           "{{.Name}}",
           "--cpus",
-          "4"
+          "2"
         ]
       ]
     },
@@ -77,8 +77,8 @@
       "vmx_data": {
         "RemoteDisplay.vnc.enabled": "false",
         "RemoteDisplay.vnc.port": "5900",
-        "memsize": "4096",
-        "numvcpus": "4",
+        "memsize": "2048",
+        "numvcpus": "2",
         "scsi0.virtualDev": "lsisas1068"
       }
   }],
@@ -99,6 +99,7 @@
       "type": "powershell",
       "elevated_user": "darksurgeon",
       "elevated_password": "darksurgeon",
+      "valid_exit_codes": [0, 5],
       "scripts": [
         "./configuration/configuration-scripts/Set-PowerSettings.ps1",
         "./configuration/configuration-scripts/Set-LowSecurityWindowsDefenderAntiVirusSettings.ps1",
@@ -108,8 +109,9 @@
         "./configuration/configuration-scripts/Remove-PreInstalledApps.ps1",
         "./configuration/configuration-scripts/Install-Chocolatey.ps1",
         "./configuration/configuration-scripts/Set-ChocolateySettings.ps1",
-        "./configuration/configuration-scripts/Set-ChocolateyFLARERepo.ps1",
+        "./configuration/configuration-scripts/Install-Git.ps1",
         "./configuration/configuration-scripts/Install-Boxstarter.ps1",
+        "./configuration/configuration-scripts/Install-FLAREVM.ps1",
         "./configuration/configuration-scripts/Install-WSL.ps1",
         "./configuration/configuration-scripts/Install-DotNet4.ps1",
         "./configuration/configuration-scripts/Install-VCRedistAll.ps1",
@@ -143,52 +145,6 @@
         "./configuration/configuration-scripts/Install-Docker.ps1",
         "./configuration/configuration-scripts/Install-DEX2JAR.ps1",
         "./configuration/configuration-scripts/Install-Exiftool.ps1",
-        "./configuration/configuration-scripts/Install-FLARE010Editor.ps1",
-        "./configuration/configuration-scripts/Install-FLAREAPIMonitor.ps1",
-        "./configuration/configuration-scripts/Install-FLAREAPKTool.ps1",
-        "./configuration/configuration-scripts/Install-FLAREBinaryNinja.ps1",
-        "./configuration/configuration-scripts/Install-FLARECyberchef.ps1",
-        "./configuration/configuration-scripts/Install-FLAREDE4Dot.ps1",
-        "./configuration/configuration-scripts/Install-FLAREDIE.ps1",
-        "./configuration/configuration-scripts/Install-FLAREDotPeek.ps1",
-        "./configuration/configuration-scripts/Install-FLAREEXEInfoPE.ps1",
-        "./configuration/configuration-scripts/Install-FLAREExplorerSuite.ps1",
-        "./configuration/configuration-scripts/Install-FLAREFakeNetNG.ps1",
-        "./configuration/configuration-scripts/Install-FLAREFileInsight.ps1",
-        "./configuration/configuration-scripts/Install-FLAREFLOSS.ps1",
-        "./configuration/configuration-scripts/Install-FLAREHashCalc.ps1",
-        "./configuration/configuration-scripts/Install-FLAREHXD.ps1",
-        "./configuration/configuration-scripts/Install-FLAREIDAFree.ps1",
-        "./configuration/configuration-scripts/Install-FLAREIDR.ps1",
-        "./configuration/configuration-scripts/Install-FLAREILSpy.ps1",
-        "./configuration/configuration-scripts/Install-FLAREJDGUI.ps1",
-        "./configuration/configuration-scripts/Install-FLAREMAP.ps1",
-        "./configuration/configuration-scripts/Install-FLAREOfficeMalScanner.ps1",
-        "./configuration/configuration-scripts/Install-FLAREOffVis.ps1",
-        "./configuration/configuration-scripts/Install-FLAREOllydbg.ps1",
-        "./configuration/configuration-scripts/Install-FLAREOllydbg2.ps1",
-        "./configuration/configuration-scripts/Install-FLAREPDFID.ps1",
-        "./configuration/configuration-scripts/Install-FLAREPDFParser.ps1",
-        "./configuration/configuration-scripts/Install-FLAREPDFStreamDumper.ps1",
-        "./configuration/configuration-scripts/Install-FLAREPEID.ps1",
-        "./configuration/configuration-scripts/Install-FLAREPEStudio.ps1",
-        "./configuration/configuration-scripts/Install-FLAREPEView.ps1",
-        "./configuration/configuration-scripts/Install-FLAREPMALabs.ps1",
-        "./configuration/configuration-scripts/Install-FLAREProcessHacker.ps1",
-        "./configuration/configuration-scripts/Install-FLARERadare2.ps1",
-        "./configuration/configuration-scripts/Install-FLARERegShot.ps1",
-        "./configuration/configuration-scripts/Install-FLAREResourceHacker.ps1",
-        "./configuration/configuration-scripts/Install-FLAREShellcodeLauncher.ps1",
-        "./configuration/configuration-scripts/Install-FLARESpyStudio.ps1",
-        "./configuration/configuration-scripts/Install-FLARESysanalyzer.ps1",
-        "./configuration/configuration-scripts/Install-FLAREVBDecompilerLite.ps1",
-        "./configuration/configuration-scripts/Install-FLAREWindbg.ps1",
-        "./configuration/configuration-scripts/Install-FLAREWireshark.ps1",
-        "./configuration/configuration-scripts/Install-FLAREx64dbg.ps1",
-        "./configuration/configuration-scripts/Install-FLAREXorsearch.ps1",
-        "./configuration/configuration-scripts/Install-FLAREXorstrings.ps1",
-        "./configuration/configuration-scripts/Install-FLAREYARA.ps1",
-        "./configuration/configuration-scripts/Install-Git.ps1",
         "./configuration/configuration-scripts/Install-Golang.ps1",
         "./configuration/configuration-scripts/Install-GoogleChrome.ps1",
         "./configuration/configuration-scripts/Install-GPG4Win.ps1",
@@ -282,13 +238,13 @@
     {
       "type": "vagrant",
       "keep_input_artifact": false,
-      "output": "DARKSURGEON_w10_1803_x64_{{.Provider}}.box",
-      "vagrantfile_template": "vagrantfile_DARKSURGEON_w10_1803_x64.template"
+      "output": "DARKSURGEON_w10_1809_x64_{{.Provider}}.box",
+      "vagrantfile_template": "Vagrantfile"
     }
   ],
   "variables": {
-    "iso_url": "windows-10-1803-x64-enterprise.iso",
+    "iso_url": "windows-10-1809-x64-enterprise.iso",
     "iso_checksum_type": "sha1",
-    "iso_checksum": "28681742FE850AA4BFC7075811C5244B61D462CF"
+    "iso_checksum": "6208B319DE3AAF0D8EC5B8D0F710E2744F89D0B4"
   }
 }

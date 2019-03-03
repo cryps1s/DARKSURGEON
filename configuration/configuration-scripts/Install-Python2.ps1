@@ -29,16 +29,3 @@ Catch
 	Write-Host "Fatal erorr installing package $PackageName. Exiting."	
 	Exit 1
 }
-
-$PackageName = "python2.nopath"
-[Array] $OptionalArguments = "--x86","--package-parameters","'/InstallDir:`"$Env:SystemDrive\Program Files (x86)\Python27`"'"
-
-Try 
-{
-	Install-ChocolateyPackage -PackageName $PackageName	-OptionalArguments $OptionalArguments
-}
-Catch 
-{
-	Write-Host "Fatal erorr installing package $PackageName. Exiting."	
-	Exit 1
-}

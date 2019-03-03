@@ -18,7 +18,7 @@ Set-StrictMode -Version Latest
 # Load the Install-ChocolateyPackage Function 
 . "$($PSScriptRoot)\Install-ChocolateyPackage.ps1"
 
-$PackageName = "010editor"
+$PackageName = "010editor.flare"
 [Array] $OptionalArguments = "--skip-virus-check"
 
 Try 

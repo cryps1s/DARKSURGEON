@@ -18,7 +18,7 @@
 # Load the Install-ChocolateyPackage Function 
 . "$($PSScriptRoot)\Install-ChocolateyPackage.ps1"
 
-$PackageName = "binaryninja"
+$PackageName = "binaryninja.flare"
 [Array] $OptionalArguments = "--skip-virus-check"
 
 Try 

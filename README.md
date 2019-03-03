@@ -347,7 +347,7 @@ DARKSURGEON is built using the HashiCorp application packer. The total build tim
 
 1. Install packer, vagrant, and your preferred hypervisor on your host.
 2. Download the repository contents to your host.
-3. Download a Windows 10 Enterprise Evaluation ISO (1803).
+3. Download a Windows 10 Enterprise Evaluation ISO (1809).
 4. Move the ISO file to your local DARKSURGEON repository.
 5. Update DARKSURGEON.json with the ISO SHA1 hash and file name.
 6. (Optional) Execute the powershell script New-DARKSURGEONISO.ps1 to generate a new answers.iso file. There is an answers ISO file included in the repository but you may re-build this if you don't trust it, or you would like to modify the unattend files: `powershell.exe New-DARKSURGEONISO.ps1`
@@ -396,7 +396,7 @@ If you'd rather not use vagrant, you can either import the VM image manually, or
 
 ## Downloading DARKSURGEON
 
-If you'd rather skip the process of building DARKSURGEON and want to trust the box file I've built, [you can simply download it here.](https://darksurgeon.io/files/DARKSURGEON_w10_1803_x64_hyperv.box)
+If you'd rather skip the process of building DARKSURGEON and want to trust the box file I've built, [you can simply download it here.](https://darksurgeon.io/files/DARKSURGEON_w10_1809_x64_hyperv.box)
 
 ## Contributing
 

@@ -33,8 +33,8 @@ Try
 	# Set global confirmation
 	choco feature enable -n allowGlobalConfirmation
 
-	# Allow empty checksums for HTTPS
-	choco feature enable -n allowemptychecksumsecure
+	# Allow empty checksums
+	choco feature enable -n allowEmptyChecksums
 
 	# Disable package exit codes
 	choco feature disable -n usePackageExitCodes
