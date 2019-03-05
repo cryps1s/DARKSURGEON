@@ -2,7 +2,7 @@
   "builders": [
     {
       "type": "hyperv-iso",
-      "boot_command": [ "aaaaa<wait>a<wait>a<wait>" ],
+      "boot_command": [ "aaaaaa<wait>aaaa<wait>" ],
       "boot_wait": "0s",
       "communicator": "winrm",
       "cpu": 2,
@@ -25,7 +25,7 @@
     },
     {
       "type": "virtualbox-iso",
-      "boot_command": [ "aaaaa<wait>a<wait>a<wait>" ],
+      "boot_command": [ "aaaaaa<wait>aaaa<wait>" ],
       "boot_wait": "0s",
       "communicator": "winrm",
       "iso_url": "{{user `iso_url`}}",
@@ -111,6 +111,7 @@
         "./configuration/configuration-scripts/Set-ChocolateySettings.ps1",
         "./configuration/configuration-scripts/Install-Git.ps1",
         "./configuration/configuration-scripts/Install-Boxstarter.ps1",
+        "./configuration/configuration-scripts/Set-Breakpoint.ps1",
         "./configuration/configuration-scripts/Install-FLAREVM.ps1",
         "./configuration/configuration-scripts/Install-WSL.ps1",
         "./configuration/configuration-scripts/Install-DotNet4.ps1",
@@ -194,7 +195,6 @@
         "./configuration/configuration-scripts/Install-Sysinternals.ps1",
         "./configuration/configuration-scripts/Install-TimeApp.ps1",
         "./configuration/configuration-scripts/Install-TimelineExplorer.ps1",
-        "./configuration/configuration-scripts/Install-TorBrowser.ps1",
         "./configuration/configuration-scripts/Install-UnxUtils.ps1",
         "./configuration/configuration-scripts/Install-UPX.ps1",
         "./configuration/configuration-scripts/Install-VirusTotalUploader.ps1",
@@ -245,6 +245,6 @@
   "variables": {
     "iso_url": "windows-10-1809-x64-enterprise.iso",
     "iso_checksum_type": "sha1",
-    "iso_checksum": "6208B319DE3AAF0D8EC5B8D0F710E2744F89D0B4"
+    "iso_checksum": "A217920116FCD76F8A3FA25ABF330E962D616E9C"
   }
 }
