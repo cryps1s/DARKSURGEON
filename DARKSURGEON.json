@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "builders": [
     {
@@ -248,3 +249,255 @@
     "iso_checksum": "A217920116FCD76F8A3FA25ABF330E962D616E9C"
   }
 }
+=======
+{
+  "builders": [
+    {
+      "type": "hyperv-iso",
+      "boot_command": [ "aaaaa<wait>a<wait>a<wait>" ],
+      "boot_wait": "0s",
+      "communicator": "winrm",
+      "cpu": 2,
+      "disk_size": 122880,
+      "enable_secure_boot": true,
+      "floppy_files": [],
+      "generation": 2,
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "ram_size": 2048,
+      "secondary_iso_images": [ "./configuration/iso-scripts/answer.iso" ],
+      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "switch_name": "Default Switch",
+      "vm_name": "DARKSURGEON_w10_1809_x64",
+      "winrm_timeout": "60m",
+      "winrm_username": "darksurgeon",
+      "winrm_password": "darksurgeon",
+      "winrm_use_ntlm": "true"
+    },
+    {
+      "type": "virtualbox-iso",
+      "boot_command": [ "aaaaa<wait>a<wait>a<wait>" ],
+      "boot_wait": "0s",
+      "communicator": "winrm",
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "headless": true,      
+      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "guest_os_type": "Windows2012_64",
+      "guest_additions_mode": "disable",
+      "disk_size": 122880,
+      "floppy_dirs": [ "./configuration/iso-scripts/" ],
+      "winrm_timeout": "60m",
+      "winrm_username": "darksurgeon",
+      "winrm_password": "darksurgeon",
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--memory",
+          "2048"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--cpus",
+          "2"
+        ]
+      ]
+    },
+    {
+      "type": "vmware-iso",
+      "communicator": "winrm",
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "headless": true,
+      "boot_wait": "0s",
+      "winrm_username": "darksurgeon",
+      "winrm_password": "darksurgeon",
+      "winrm_timeout": "60m",
+      "shutdown_timeout": "2h",
+      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "guest_os_type": "windows8srv-64",
+      "disk_size": 61440,
+      "vnc_port_min": 5900,
+      "vnc_port_max": 5980,
+      "version": 11,
+      "floppy_dirs": [ "./configuration/iso-scripts/" ],
+      "vmx_data": {
+        "RemoteDisplay.vnc.enabled": "false",
+        "RemoteDisplay.vnc.port": "5900",
+        "memsize": "2048",
+        "numvcpus": "2",
+        "scsi0.virtualDev": "lsisas1068"
+      }
+  }],
+  "provisioners": [
+    {
+      "type": "file",
+      "source": "./configuration/helper-scripts/",
+      "destination": "C:\\windows\\Temp\\",
+      "direction": "upload"
+    },
+    {
+      "type": "file",
+      "source": "./configuration/configuration-files/",
+      "destination": "C:\\packer\\",
+      "direction": "upload"
+    },
+    {
+      "type": "powershell",
+      "elevated_user": "darksurgeon",
+      "elevated_password": "darksurgeon",
+      "valid_exit_codes": [0, 5],
+      "scripts": [
+        "./configuration/configuration-scripts/Set-PowerSettings.ps1",
+        "./configuration/configuration-scripts/Set-LowSecurityWindowsDefenderAntiVirusSettings.ps1",
+        "./configuration/configuration-scripts/Set-LowSecurityWindowsDefenderSmartScreenSettings.ps1",
+        "./configuration/configuration-scripts/Set-LowSecurityWindowsDefenderExploitGuardSettings.ps1",
+        "./configuration/configuration-scripts/Set-WindowsTelemetrySettings.ps1",
+        "./configuration/configuration-scripts/Remove-PreInstalledApps.ps1",
+        "./configuration/configuration-scripts/Install-Chocolatey.ps1",
+        "./configuration/configuration-scripts/Set-ChocolateySettings.ps1",
+        "./configuration/configuration-scripts/Install-Git.ps1",
+        "./configuration/configuration-scripts/Install-Boxstarter.ps1",
+        "./configuration/configuration-scripts/Install-FLAREVM.ps1",
+        "./configuration/configuration-scripts/Install-WSL.ps1",
+        "./configuration/configuration-scripts/Install-DotNet4.ps1",
+        "./configuration/configuration-scripts/Install-VCRedistAll.ps1",
+        "./configuration/configuration-scripts/Install-Nuget.ps1",
+        "./configuration/configuration-scripts/Install-Python2.ps1",
+        "./configuration/configuration-scripts/Install-VCPython27.ps1",
+        "./configuration/configuration-scripts/Install-PIPCryptography.ps1",
+        "./configuration/configuration-scripts/Install-PIPHexdump.ps1",
+        "./configuration/configuration-scripts/Install-PIPJupyter.ps1",
+        "./configuration/configuration-scripts/Install-PIPOLETools.ps1",
+        "./configuration/configuration-scripts/Install-PIPPandas.ps1",
+        "./configuration/configuration-scripts/Install-PIPPassivetotal.ps1",
+        "./configuration/configuration-scripts/Install-PIPPEFile.ps1",
+        "./configuration/configuration-scripts/Install-PIPPyCryptodome.ps1",
+        "./configuration/configuration-scripts/Install-PIPScapy.ps1",
+        "./configuration/configuration-scripts/Install-PIPShodan.ps1",
+        "./configuration/configuration-scripts/Install-PIPSigma.ps1",
+        "./configuration/configuration-scripts/Install-PIPWinAppDBG.ps1",
+        "./configuration/configuration-scripts/Install-PIPYaraPython.ps1",
+        "./configuration/configuration-scripts/Install-FLAREVivisect.ps1",
+        "./configuration/configuration-scripts/Install-1Password.ps1",
+        "./configuration/configuration-scripts/Install-7Zip.ps1",
+        "./configuration/configuration-scripts/Install-AdobeFlashPlayer.ps1",
+        "./configuration/configuration-scripts/Install-AdobeReader.ps1",
+        "./configuration/configuration-scripts/Install-AWSCLI.ps1",
+        "./configuration/configuration-scripts/Install-Bleachbit.ps1",
+        "./configuration/configuration-scripts/Install-BurpFree.ps1",
+        "./configuration/configuration-scripts/Install-Checksum.ps1",
+        "./configuration/configuration-scripts/Install-Cmder.ps1",
+        "./configuration/configuration-scripts/Install-Curl.ps1",
+        "./configuration/configuration-scripts/Install-Docker.ps1",
+        "./configuration/configuration-scripts/Install-DEX2JAR.ps1",
+        "./configuration/configuration-scripts/Install-Exiftool.ps1",
+        "./configuration/configuration-scripts/Install-Golang.ps1",
+        "./configuration/configuration-scripts/Install-GoogleChrome.ps1",
+        "./configuration/configuration-scripts/Install-GPG4Win.ps1",
+        "./configuration/configuration-scripts/Install-Hashdeep.ps1",
+        "./configuration/configuration-scripts/Install-Hasher.ps1",
+        "./configuration/configuration-scripts/Install-Hashtab.ps1",
+        "./configuration/configuration-scripts/Install-IISGeolocate.ps1",
+        "./configuration/configuration-scripts/Install-InvokeATTACKAPI.ps1",
+        "./configuration/configuration-scripts/Install-Irfanview.ps1",
+        "./configuration/configuration-scripts/Install-JavaJDK8.ps1",
+        "./configuration/configuration-scripts/Install-JavaJRE8.ps1",
+        "./configuration/configuration-scripts/Install-JLECmd.ps1",
+        "./configuration/configuration-scripts/Install-JQ.ps1",
+        "./configuration/configuration-scripts/Install-JumpListExplorer.ps1",
+        "./configuration/configuration-scripts/Install-Keepass.ps1",
+        "./configuration/configuration-scripts/Install-LECmd.ps1",
+        "./configuration/configuration-scripts/Install-LOLBAS.ps1",
+        "./configuration/configuration-scripts/Install-MozillaFirefox.ps1",
+        "./configuration/configuration-scripts/Install-MozillaThunderbird.ps1",
+        "./configuration/configuration-scripts/Install-Neo4jCommunity.ps1",
+        "./configuration/configuration-scripts/Install-Nmap.ps1",
+        "./configuration/configuration-scripts/Install-NodeJS.ps1",
+        "./configuration/configuration-scripts/Install-Office365ProPlus.ps1",
+        "./configuration/configuration-scripts/Install-OpenSSH.ps1",
+        "./configuration/configuration-scripts/Install-Osquery.ps1",
+        "./configuration/configuration-scripts/Install-PECmd.ps1",
+        "./configuration/configuration-scripts/Install-PSAttack.ps1",
+        "./configuration/configuration-scripts/Install-PSMAutoRuns.ps1",
+        "./configuration/configuration-scripts/Install-PSMAzurePowershell.ps1",
+        "./configuration/configuration-scripts/Install-PSMCimSweep.ps1",
+        "./configuration/configuration-scripts/Install-PSMPester.ps1",
+        "./configuration/configuration-scripts/Install-PSMPoshGit.ps1",
+        "./configuration/configuration-scripts/Install-PSMPoshSecMod.ps1",
+        "./configuration/configuration-scripts/Install-PSMPoshSysmon.ps1",
+        "./configuration/configuration-scripts/Install-PSMPowerForensics.ps1",
+        "./configuration/configuration-scripts/Install-PSMPowerSploit.ps1",
+        "./configuration/configuration-scripts/Install-PSMRevokeObfuscation.ps1",
+        "./configuration/configuration-scripts/Install-Putty.ps1",
+        "./configuration/configuration-scripts/Install-Qbittorrent.ps1",
+        "./configuration/configuration-scripts/Install-RawCap.ps1",
+        "./configuration/configuration-scripts/Install-RegistryExplorer.ps1",
+        "./configuration/configuration-scripts/Install-RTA.ps1",
+        "./configuration/configuration-scripts/Install-ShellbagsExplorer.ps1",
+        "./configuration/configuration-scripts/Install-Slack.ps1",
+        "./configuration/configuration-scripts/Install-Sleuthkit.ps1",
+        "./configuration/configuration-scripts/Install-SublimeText3.ps1",
+        "./configuration/configuration-scripts/Install-Sysinternals.ps1",
+        "./configuration/configuration-scripts/Install-TimeApp.ps1",
+        "./configuration/configuration-scripts/Install-TimelineExplorer.ps1",
+        "./configuration/configuration-scripts/Install-TorBrowser.ps1",
+        "./configuration/configuration-scripts/Install-UnxUtils.ps1",
+        "./configuration/configuration-scripts/Install-UPX.ps1",
+        "./configuration/configuration-scripts/Install-VirusTotalUploader.ps1",
+        "./configuration/configuration-scripts/Install-VisualStudioCode.ps1",
+        "./configuration/configuration-scripts/Install-Volatility.ps1",
+        "./configuration/configuration-scripts/Install-Wget.ps1",
+        "./configuration/configuration-scripts/Install-WindowsSDK10.ps1",
+        "./configuration/configuration-scripts/Install-Winlogbeat.ps1",
+        "./configuration/configuration-scripts/Install-XWFIM.ps1"
+      ]
+    },
+    {
+      "type": "windows-restart",
+      "restart_timeout": "15m"
+    },
+    {
+      "type": "powershell",
+      "elevated_user": "darksurgeon",
+      "elevated_password": "darksurgeon",
+      "scripts": [
+        "./configuration/configuration-scripts/Install-NetCease.ps1",
+        "./configuration/configuration-scripts/Remove-SMBv1.ps1",
+        "./configuration/configuration-scripts/Remove-WPAD.ps1",
+        "./configuration/configuration-scripts/Remove-LLMNR.ps1",
+        "./configuration/configuration-scripts/Remove-NBT.ps1",
+        "./configuration/configuration-scripts/Set-WindowsEventAuditSettings.ps1",
+        "./configuration/configuration-scripts/Set-PowershellLoggingSettings.ps1",
+        "./configuration/configuration-scripts/Install-Sysmon.ps1",
+        "./configuration/configuration-scripts/Set-SysmonSettings.ps1",
+        "./configuration/configuration-scripts/Set-DARKSURGEONTheme.ps1",
+        "./configuration/configuration-scripts/Invoke-SystemUpdate.ps1",      
+        "./configuration/configuration-scripts/Invoke-SystemCleanup.ps1"
+      ]
+    },    
+    {
+      "type": "windows-restart",
+      "restart_timeout": "15m"
+    }
+  ],
+  "post-processors": [
+    {
+      "type": "vagrant",
+      "keep_input_artifact": false,
+      "output": "DARKSURGEON_w10_1809_x64_{{.Provider}}.box",
+      "vagrantfile_template": "Vagrantfile"
+    }
+  ],
+  "variables": {
+    "iso_url": "windows-10-1809-x64-enterprise.iso",
+    "iso_checksum_type": "sha1",
+    "iso_checksum": "6208B319DE3AAF0D8EC5B8D0F710E2744F89D0B4"
+  }
+}
+>>>>>>> parent of 36c75ab...  Minor fixes.
