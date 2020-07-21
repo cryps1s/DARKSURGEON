@@ -21,7 +21,7 @@
 	 {
 		 New-Item -Path $RegistryKeyPath -ItemType Directory -Force  | Out-Null
 	 }
-	 Set-ItemProperty "HKLM:\Software\Policies\Microsoft\Windows NT\DNSClient" -Name "EnableMulticast" -Value 1 -Type DWord -Force  | Out-Null
+	 Set-ItemProperty "HKLM:\Software\Policies\Microsoft\Windows NT\DNSClient" -Name "EnableMulticast" -Value 0 -Type DWord -Force  | Out-Null
  }
  Catch
  {
